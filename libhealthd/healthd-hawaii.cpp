@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013 The Android Open Source Project
- * Copyright (C) 2013 The CyanogenMod Project
+ * Copyright (C) 2016 The Android Open Source Project
+ * Copyright (C) 2016 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,11 @@
  * limitations under the License.
  */
 
-#include <healthd.h>
+#include <healthd/healthd.h>
 
 void
 healthd_board_init(struct healthd_config *config)
 {
-    // battery needs to be used instead of bcm59056_charger
     config->batteryStatusPath      = "/sys/class/power_supply/battery/status";
     config->batteryHealthPath      = "/sys/class/power_supply/battery/health";
     config->batteryPresentPath     = "/sys/class/power_supply/battery/present";
@@ -31,8 +30,28 @@ healthd_board_init(struct healthd_config *config)
 }
 
 int
-healthd_board_battery_update(struct android::BatteryProperties *props)
+healthd_board_battery_update(__attribute__((unused)) struct android::BatteryProperties *props)
 {
     // don't log to kernel
     return 1;
+}
+
+void healthd_board_mode_charger_draw_battery(struct android::BatteryProperties*)
+{
+
+}
+
+void healthd_board_mode_charger_battery_update(struct android::BatteryProperties*)
+{
+
+}
+
+void healthd_board_mode_charger_set_backlight(bool)
+{
+
+}
+
+void healthd_board_mode_charger_init()
+{
+
 }

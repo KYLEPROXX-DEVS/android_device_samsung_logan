@@ -3,10 +3,10 @@ import init.log.rc
 
 on early-init
     mkdir /efs 0771 radio system
+    mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
     
-    symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
     symlink /efs /factory
@@ -134,7 +134,6 @@ on boot
     setprop ro.build.product hawaii
     setprop ro.product.device hawaii
 
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 # WIFI
     setprop wifi.interface wlan0
